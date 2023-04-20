@@ -1,4 +1,4 @@
-const { performance } = require('perf_hooks');
+const { performance } = require("perf_hooks");
 
 // SETUP 🏁
 
@@ -11,19 +11,28 @@ const add = (x, y) => x + y;
 
 // 🔚 SETUP
 
-performance.mark('start');
+performance.mark("start");
 
 // EXERCISE 💪
 
+// %NeverOptimizeFunction(add);
+
+while (iterations--) {
+  add(a, b);
+}
+
+add("a", "b");
+
+iterations = 1e7;
 while (iterations--) {
   add(a, b);
 }
 
 // 🔚 EXERCISE
 
-performance.mark('end');
+performance.mark("end");
 
-performance.measure('My Special Benchmark', 'start', 'end');
+performance.measure("My Custom Benchmark", "start", "end");
 
-const [ measure ] = performance.getEntriesByName('My Special Benchmark');
+const [measure] = performance.getEntriesByName("My Custom Benchmark");
 console.log(measure);
